@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, KeyboardEvent, useState} from 'react';
 
 export const HW3 = () => {
   // 1️⃣ Раскомментируйте JSX(HW3.tsx) и вы увидите,
@@ -24,6 +24,12 @@ export const HW3 = () => {
     setCurrentText("")
   };
 
+  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      handleSave()
+    }
+  }
+
   return (
     <div id={'hw03'}>
       {currentText ? (
@@ -32,9 +38,9 @@ export const HW3 = () => {
         <h1 id={'hw03-default-text'}>Здесь появится новое дело</h1> // ничего не меняем, здесь все норм
       )}
 
-      <input id={'hw03-input'} type="text" value={currentText} onChange={handleChange} />
+      <input id={'hw03-input'} type="text" value={currentText} onChange={handleChange} onKeyDown={onKeyDownHandler}/>
 
-      <button id={'hw03-button'} onClick={() => handleSave()}>
+      <button id={'hw03-button'} onClick={handleSave}>
         Сохранить
       </button>
 
