@@ -10,7 +10,7 @@ export const HW3 = () => {
   // - приложение должно компилироваться и запускаться в браузере
 
 
-  const [currentText, setCurrentText] = useState('');
+  const [currentText, setCurrentText] = useState<string>('');
   const [texts, setTexts] = useState<string[]>([
     'То, что вы делаете по ночам, то и делает вас богатым. (Аль Капоне)',
   ]);
@@ -24,21 +24,15 @@ export const HW3 = () => {
     setCurrentText("")
   };
 
-  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if(e.key === 'Enter') {
-      handleSave()
-    }
-  }
-
   return (
     <div id={'hw03'}>
       {currentText ? (
-        <h1 id={'hw03-text'}>ЗДЕСЬ ХОТЕЛОСЬ БЫ УВИДЕТЬ ВВОДИМЫЙ ТЕКСТ</h1>
+        <h1 id={'hw03-text'}>{currentText}</h1>
       ) : (
         <h1 id={'hw03-default-text'}>Здесь появится новое дело</h1> // ничего не меняем, здесь все норм
       )}
 
-      <input id={'hw03-input'} type="text" value={currentText} onChange={handleChange} onKeyDown={onKeyDownHandler}/>
+      <input id={'hw03-input'} type="text" value={currentText} onChange={handleChange} />
 
       <button id={'hw03-button'} onClick={handleSave}>
         Сохранить
